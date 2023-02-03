@@ -1,18 +1,32 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_user")
+public class User implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.INTEGER)
 	private int id;
 	private String nome;
 	private String eMail;
 	private String telefone;
 	private String password;
 	
-	public User() {
-		
-	}
+	public User() {}
 	
 	public User(String nome, String eMail, String telefone, String password) {
 		this.nome = nome;
@@ -79,8 +93,6 @@ public class User {
 				&& Objects.equals(password, other.password) && Objects.equals(telefone, other.telefone);
 	}
 	 
-	
-	
 	
 	
 }
