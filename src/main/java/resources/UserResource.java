@@ -1,44 +1,42 @@
 package resources;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import entities.User;
-import repositories.UserRepository;
+import services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
 	
 	@Autowired
-	public static UserRepository userRepository;
+	private UserService userService;
 	
-//	UserResource(UserResource userRepository) {
-//	       this.userRepository = userRepository;
-//	}
+	@GetMapping("/rest/getAll")
+    public List<User> getUsers() {
+        return userService.findAllUsers();
+    }
 	
-	@GetMapping
-	public List<User> findAll(){
-	   return userRepository.findAll();
-	}
+	@GetMapping("/rest/get/{id}")
+	public Optional<User> getUserById(@PathVariable("id") Long id) {
+        return userService.findUserById(id);
+    }
 	
-	@GetMapping(path = {"/{id}"})
-	public ResponseEntity<User> findById(@PathVariable long id){
-	   return userRepository.findById(id)
-	           .map(record -> ResponseEntity.ok().body(record))
-	           .orElse(ResponseEntity.notFound().build());
-	}
+	@DeleteMapping("/rest/delete/{id}")
+	public void delete(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+    }
 	
-	@PostMapping
-	public User create(@RequestBody User user){
-	   return userRepository.save(user);
-	}
+	@PostMapping("/rest/update/{id}")
+	public void updateUser(@RequestBody User user) {
+		userService.insertUser(user);
+    }
+	
+	@PostMapping("/rest/insert")
+	public void createUser(@RequestBody User user) {
+		userService.insertUser(user);
+    }
 }
