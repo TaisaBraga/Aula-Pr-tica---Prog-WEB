@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import entities.User;
+import exceptions.ResourceNotFoundException;
 import repositories.UserRepository;
 
 @Service("UserService")
@@ -17,27 +18,53 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Optional<User> findUserById(Long id) {
-		return userRepository.findById(id);
+		try {
+			return userRepository.findById(id);
+
+		}catch (Exception ex){
+			throw new ResourceNotFoundException();
+		}
 	}
 
 	@Override
 	public List<User> findAllUsers() {
-		return userRepository.findAll();
+		try {
+			return userRepository.findAll();
+		}catch(Exception ex) {
+			throw new ResourceNotFoundException();
+		}
+		
 	}
 
 	@Override
 	public void deleteUser(Long id) {
-		userRepository.deleteById(id);
+		try {
+			userRepository.deleteById(id);
+		}catch(Exception ex) {
+			throw new ResourceNotFoundException();
+		}
+		
 	}
 
 	@Override
 	public void updateUser(User user) {
-		userRepository.save(user);
+		try {
+			userRepository.save(user);
+		}catch(Exception ex) {
+			throw new ResourceNotFoundException();
+			}
+		
 	}
 
 	@Override
 	public void insertUser(User user) {
-		userRepository.save(user);	
+		try {
+			userRepository.save(user);
+		}catch(Exception ex) {
+			throw new ResourceNotFoundException();
+			}
+		
+			
 	}
     
 }
