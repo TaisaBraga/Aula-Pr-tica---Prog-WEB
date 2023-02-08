@@ -1,4 +1,4 @@
-package services;
+package aula.pratica.programacao.web.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entities.User;
-import exceptions.ResourceNotFoundException;
-import repositories.UserRepository;
+import aula.pratica.programacao.web.entities.User;
+import aula.pratica.programacao.web.exceptions.ResourceNotFoundException;
+import aula.pratica.programacao.web.repositores.UserRepository;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {

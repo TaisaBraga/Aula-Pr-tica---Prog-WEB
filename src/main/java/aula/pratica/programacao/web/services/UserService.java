@@ -1,9 +1,9 @@
-package services;
+package aula.pratica.programacao.web.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import entities.User;
+import aula.pratica.programacao.web.entities.User;
 
 public interface UserService {
 	

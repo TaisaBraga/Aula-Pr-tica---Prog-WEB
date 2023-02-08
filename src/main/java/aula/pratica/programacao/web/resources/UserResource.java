@@ -1,15 +1,16 @@
-package resources;
+package aula.pratica.programacao.web.resources;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import entities.User;
-import services.UserService;
+
+import aula.pratica.programacao.web.entities.User;
+import aula.pratica.programacao.web.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping("users")
 public class UserResource {
 	
 	@Autowired

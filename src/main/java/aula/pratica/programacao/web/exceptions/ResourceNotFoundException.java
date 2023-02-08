@@ -1,4 +1,4 @@
-package exceptions;
+package aula.pratica.programacao.web.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

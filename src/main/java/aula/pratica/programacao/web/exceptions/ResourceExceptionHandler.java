@@ -1,4 +1,4 @@
-package exceptions;
+package aula.pratica.programacao.web.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
